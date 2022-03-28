@@ -71,3 +71,11 @@ I am also interpreting the output to be of this sort of form.
     }
 ]
 ```
+
+Other assumptions made surround the input. I will be assuming that there is no false input that will be used. 
+i.e. 
+- using a flowercode that does not exist
+- having a quantity that does not conform to the possible bundle combinations.
+  - e.g. asking for 13 when the bundle sizes are [2,4,6]
+
+I have allowed for empty orders which has been handled.
