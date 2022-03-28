@@ -5,6 +5,8 @@ This project has been scaffolded using the [NestJS](https://github.com/nestjs/ne
 - npm v8.5.5
 - yarn v1.22.18
 
+This challenge has been made and tested with the provided data. Assumptions on structure and function are below.
+
 ## Installation
 
 ```bash
