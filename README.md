@@ -1,6 +1,9 @@
 ## Description
 
-This project has been scaffolded using the [Nest](https://github.com/nestjs/nest) framework.
+This project has been scaffolded using the [NestJS](https://github.com/nestjs/nest) framework. My environment is using:
+- node v16.10.0
+- npm v8.5.5
+- yarn v1.22.18
 
 ## Installation
 
