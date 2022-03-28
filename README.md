@@ -5,6 +5,39 @@ This project has been scaffolded using the [NestJS](https://github.com/nestjs/ne
 - npm v8.5.5
 - yarn v1.22.18
 
+### Assumptions
+I am assuming an incoming data structure for the order route like this:
+```json
+{
+    "flowerList": [
+        [10, "R12"],
+        [15, "L09"],
+        [13, "T58"]
+    ]
+}
+```
+
+I am also interpreting the output to be of this sort of form.
+
+```json
+[
+    {
+        "code": "R12",
+        "totalPrice": "12.99",
+        "total": 10,
+        "bundles": [
+            [
+                10,
+                {
+                    "price": 12.99,
+                    "quantity": 1
+                }
+            ]
+        ]
+    }
+]
+```
+
 ## Installation
 
 ```bash
