@@ -5,6 +5,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { Bundles } from './entities/bundle.entity';
 import { Flowers } from './entities/flower.entity';
 import * as logger from 'node-color-log';
+import { combinationSum } from 'src/utils/sum';
 
 // quantity => number of bundles, price
 type flowerBundleQuantity = Map<number, [number, number]>;
@@ -46,13 +47,26 @@ export class OrdersService {
           code: o[1],
         },
       });
-
       bundles = bundles.sort((a, b) => b.quantity - a.quantity);
 
-      let remaining = o[0];
+      // A map of what kind of bundles and how many of those bundles.
       const bundleMap: flowerBundleQuantity = new Map();
+
+      // Builder for algorithm
+      const bundleQuantities = [];
       for (const b of bundles) {
-        while (remaining >= b.quantity) {
+        bundleQuantities.push(b.quantity);
+      }
+
+      // Combinations algorithm
+      let combinations = combinationSum(bundleQuantities, o[0]);
+      combinations = combinations.sort((a, b) => a.length - b.length);
+      console.log(combinations);
+
+      // Looping through smallest bundle array and generating order
+      for (const n of combinations[0]) {
+        for (const b of bundles) {
+          if (b.quantity !== n) continue;
           if (!bundleMap.has(b.quantity)) {
             bundleMap.set(b.quantity, [1, b.price]);
           } else {
@@ -61,7 +75,6 @@ export class OrdersService {
             currentPricePair[1] += b.price;
             bundleMap.set(b.quantity, currentPricePair);
           }
-          remaining = remaining - b.quantity;
         }
       }
       orderFlowerBundles.push([o, bundleMap]);
@@ -70,8 +83,13 @@ export class OrdersService {
     // Building return request.
     const out = [];
     for (const flowers of orderFlowerBundles) {
+      // An array with form [bundleSize, [price, quantity]]
       const bundleListing = [];
+      let bundleTotalPrice = 0;
+
+      // Looping through the number of bundles for this flower and how much they are
       for (const bundle of flowers[1]) {
+        bundleTotalPrice += bundle[1][1];
         bundleListing.push([
           bundle[0],
           {
@@ -82,6 +100,7 @@ export class OrdersService {
       }
       out.push({
         code: flowers[0][1],
+        totalPrice: bundleTotalPrice.toFixed(2),
         total: flowers[0][0],
         bundles: bundleListing,
       });
