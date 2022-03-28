@@ -5,7 +5,41 @@ This project has been scaffolded using the [NestJS](https://github.com/nestjs/ne
 - npm v8.5.5
 - yarn v1.22.18
 
-### Assumptions
+## Installation
+
+```bash
+$ yarn install
+```
+
+## Running the app
+
+Prior to using the application, the env file will have to be edited with your values for username, password, database name. I have opted to use postgres here.
+
+```bash
+# development
+$ yarn start
+
+# watch mode
+$ yarn start:dev
+
+# production mode
+$ yarn start:prod
+```
+
+## Test
+
+```bash
+# unit tests
+$ yarn test
+
+# e2e tests
+$ yarn test:e2e
+
+# test coverage
+$ yarn test:cov
+```
+
+## Assumptions
 I am assuming an incoming data structure for the order route like this:
 ```json
 {
@@ -36,36 +70,4 @@ I am also interpreting the output to be of this sort of form.
         ]
     }
 ]
-```
-
-## Installation
-
-```bash
-$ yarn install
-```
-
-## Running the app
-
-```bash
-# development
-$ yarn start
-
-# watch mode
-$ yarn start:dev
-
-# production mode
-$ yarn start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ yarn test
-
-# e2e tests
-$ yarn test:e2e
-
-# test coverage
-$ yarn test:cov
 ```
