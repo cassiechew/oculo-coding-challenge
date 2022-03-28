@@ -1,3 +1,6 @@
+/**
+ *  An algorithm for getting the combinatorial sum.
+ */
 export const combinationSum = (
   candidates: number[],
   target: number,

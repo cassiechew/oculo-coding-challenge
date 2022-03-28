@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 /**
- * A bundle entity to represent a flower entity.
+ * A flower entity to represent a flower.
  */
 @Entity()
 export class Flowers {
